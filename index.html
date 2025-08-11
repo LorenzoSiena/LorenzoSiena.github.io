@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfolio di Lorenzo</title>
+  <title>Portfolio di Lorenzo - Work in Progress</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -22,12 +22,17 @@
       display: flex;
       align-items: flex-start;
       gap: 1rem;
+      transition: box-shadow 0.3s ease;
+    }
+    .portfolio-block:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     .portfolio-block img {
       max-width: 200px;
       height: auto;
       border-radius: 6px;
       flex-shrink: 0;
+      object-fit: cover;
     }
     .portfolio-text {
       flex: 1;
@@ -40,19 +45,41 @@
       font-size: 1.1rem;
       color: #666;
       margin: 0 0 1rem 0;
+      font-style: italic;
+    }
+    p {
+      line-height: 1.5;
+    }
+    /* Bottone per esempio futuro */
+    .btn {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      margin-top: 0.5rem;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+    }
+    .btn:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
 
   <h1>Portfolio di Lorenzo</h1>
+  <p><em>Work in progress: questa pagina mostra alcuni esempi di blocchi portfolio, personalizzali come vuoi.</em></p>
 
   <div class="portfolio-block">
     <img src="https://via.placeholder.com/200" alt="Immagine progetto 1" />
     <div class="portfolio-text">
       <h2 class="portfolio-title">Titolo Progetto 1</h2>
       <h3 class="portfolio-subtitle">Sottotitolo Progetto 1</h3>
-      <p>Descrizione testuale del progetto 1, breve e chiara.</p>
+      <p>Descrizione testuale del progetto 1, breve e chiara. Qui puoi inserire informazioni utili sul progetto, le tecnologie usate o i risultati ottenuti.</p>
+      <!-- Esempio bottone per link esterno -->
+      <a href="#" class="btn" target="_blank" rel="noopener noreferrer">Vai al progetto</a>
     </div>
   </div>
 
@@ -61,11 +88,12 @@
     <div class="portfolio-text">
       <h2 class="portfolio-title">Titolo Progetto 2</h2>
       <h3 class="portfolio-subtitle">Sottotitolo Progetto 2</h3>
-      <p>Descrizione testuale del progetto 2, breve e chiara.</p>
+      <p>Descrizione testuale del progetto 2, breve e chiara. Puoi aggiungere ulteriori dettagli o link utili.</p>
+      <a href="#" class="btn" target="_blank" rel="noopener noreferrer">Vai al progetto</a>
     </div>
   </div>
 
-  <!-- Aggiungi altri blocchi se vuoi -->
+  <!-- Aggiungi qui altri blocchi portfolio -->
 
 </body>
 </html>
