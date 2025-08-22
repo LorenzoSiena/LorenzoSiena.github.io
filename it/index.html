@@ -1,128 +1,882 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portfolio di Lorenzo - Work in Progress</title>
+
+
+
   <style>
+    :root {
+      --python-blue: #306998;
+      --python-yellow: #FFD43B;
+    }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Lato', sans-serif;
       max-width: 900px;
       margin: 2rem auto;
       padding: 0 1rem;
-      background-color: #f9f9f9;
-      color: #333;
+      background: #2b2e43;
+      /* Un grigio-blu scuro, comune nei temi di codice */
+
+      color: #f8f8f2;
+      /* Testo chiaro */
     }
+
     .portfolio-block {
-      background: white;
-      border: 1px solid #ddd;
+      /* background: #363a49;  Sfondo della card leggermente più chiaro */
+      background: #151822;
+      /* Sfondo della card leggermente più scuro */
+      border: 2px solid #124d7d;
       border-radius: 8px;
       margin-bottom: 2rem;
-      padding: 1rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      transition: box-shadow 0.3s ease;
+      padding: 2rem;
+      /* box-shadow: 0 4px 20px rgba(48, 105, 152, 0.2); */
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      position: relative;
+      /* Riferimento per il posizionamento del logo */
     }
+
     .portfolio-block:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 30px rgba(48, 105, 152, 0.4);
+      transform: translateY(-5px);
     }
-    .portfolio-block img {
+
+    .portfolio-image {
+      float: right;
       max-width: 200px;
       height: auto;
       border-radius: 6px;
-      flex-shrink: 0;
-      object-fit: cover;
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      transition: box-shadow 0.3s ease;
     }
-    .portfolio-text {
-      flex: 1;
+
+    .portfolio-image:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
     }
+
     .portfolio-title {
-      font-size: 1.5rem;
-      margin: 0 0 0.3rem 0;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem 0;
+      color: var(--python-yellow);
+      /* Colore del titolo in giallo Python */
     }
+
     .portfolio-subtitle {
       font-size: 1.1rem;
-      color: #666;
-      margin: 0 0 1rem 0;
+      color: #bd93f9;
+      /* Colore viola per un tocco extra */
+      margin: 0 0 1.5rem 0;
       font-style: italic;
     }
-    p {
-      line-height: 1.5;
+
+    .portfolio-section-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
     }
-    /* Bottone per esempio futuro */
+
+    p {
+      line-height: 1.6;
+      color: #f8f8f2;
+    }
+
+    strong {
+      color: var(--python-blue);
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin-top: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      color: #f8f8f2;
+    }
+
+    .btn-container {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
     .btn {
       display: inline-block;
-      padding: 0.4rem 1rem;
-      margin-top: 0.5rem;
-      background-color: #007bff;
-      color: white;
-      text-decoration: none;
+      padding: 0.6rem 1.5rem;
+      margin-top: 1rem;
+      background-color: var(--python-blue);
+      color: var(--python-yellow);
+      border: 2px solid var(--python-blue);
       border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all .4s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover,
+    .btn:focus {
+      background-color: var(--python-yellow);
+      color: var(--python-blue);
+      border-color: var(--python-yellow);
+      box-shadow: rgba(255, 212, 59, 0.5) 0px 4px 12px;
+      text-decoration: none;
+      transform: scale(1.02);
+    }
+
+    .portfolio-block::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Media query for mobile */
+    @media (max-width: 600px) {
+      .portfolio-image {
+        float: none;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 1rem;
+        display: block;
+        margin: 0 auto 1rem;
+      }
+    }
+
+    /* Stili per il carosello / lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      overflow: auto;
+    }
+
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      animation: zoomIn 0.3s ease-out;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
       font-weight: bold;
-      transition: background-color 0.2s ease;
+      transition: 0.3s;
+      cursor: pointer;
     }
-    .btn:hover {
-      background-color: #0056b3;
+
+    .close-btn:hover,
+    .close-btn:focus {
+      color: #bbb;
+      text-decoration: none;
     }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .github-logo {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      /* Spostato a sinistra */
+      width: 25px;
+      /* Dimensione del logo */
+      height: auto;
+      fill: var(--python-yellow);
+      /* Imposta il colore di riempimento */
+    }
+
+.golden{
+
+  color: goldenrod;
+  text-decoration: none;
+}
+
+    /* 
+    .project-components {
+      list-style-type: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .project-component-item {
+      flex: 0 1 200px;
+      text-align: center;
+      background-color: var(--dark-blue);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+ */
+
+
+    .project-components {
+      list-style-type: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      /* Aggiunto per allineare gli elementi verticalmente */
+      align-items: stretch;
+    }
+
+    .project-component-item {
+      /* Modificato per distribuire lo spazio in modo uniforme e mantenere la stessa altezza */
+      flex: 1;
+      text-align: center;
+      background-color: var(--card-background);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      /* Aggiunto per un controllo più preciso del layout interno */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 200px;
+    }
+
+    .project-component-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(255, 212, 59, 0.2);
+    }
+
+
+
+
+
+    /* --------------------
+    Layout
+    -------------------- */
+    /* .content-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @media (min-width: 800px) {
+      .content-grid {
+        grid-template-columns: 2fr 1fr;
+      }
+    } */
+
+
+    /* --------------------
+    Image Gallery
+    -------------------- */
+/*     .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .image-gallery {
+      float: right;
+      margin-left: 2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+    }
+ 
+
+ /* Responsive image gallery */
+.image-gallery {
+    width: 100%;
+    margin: 0 auto 1.5rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+        
+@media (min-width: 768px) {
+    .image-gallery {
+        width: auto;
+        float: right;
+        margin-left: 2rem;
+    }
+}
+    .image-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .portfolio-image {
+      width: 100%;
+      max-width: 250px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .portfolio-image:hover {
+      box-shadow: 0 10px 25px rgba(255, 212, 59, 0.4);
+    }
+
+    figcaption {
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--text-color);
+      opacity: 0.7;
+    }
+
+
+    .project-component-item .portfolio-image {
+    
+    margin-left: 0;
+    
+}
   </style>
+
+
+
+
+
 </head>
+
 <body>
 
-  <h1>Portfolio di Lorenzo</h1>
-  <p><em>Work in progress: questa pagina mostra alcuni esempi di blocchi portfolio, personalizzali come vuoi.</em></p>
+  <h1>Statix Portfolio di Lorenzo</h1>
+  <p><em>Work in progress</em></p>
+  <div class="portfolio-block">
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="github-logo"
+      viewBox="0 0 16 16">
+      <path
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+    </svg>
+    <!-- 
+    <img class="portfolio-image"  src="/media/HRMS_logo.png" alt="Screenshot HRMS" /> -->
+    <div class="portfolio-text">
+      <h2 class="portfolio-title">HRMS — Django with Python</h2>
+
+      <a href="#">
+        <img class="portfolio-image" src="/media/HRMS_logo.png" alt="Screenshot HRMS" />
+      </a>
+      <h3 class="portfolio-subtitle">Un gestionale per le Risorse Umane sviluppato in Django</h3>
+      <p>
+        Un'applicazione web per la gestione efficiente del personale in piccole e medie imprese.
+        <br>
+        Il sistema centralizza e automatizza processi HR chiave, tra cui la gestione dei dipendenti,
+        il monitoraggio delle presenze, la gestione delle ferie e l'elaborazione delle buste paga.
+        <br>
+        Ha un login, un sistema di registrazione, autenticazione e offre inoltre funzionalità avanzate
+        come la generazione di report sulle performance e un sistema di notifiche per le comunicazioni aziendali.
+      </p>
+      <p><strong>Tecnologie utilizzate:</strong></p>
+      <ul>
+        <li><strong>Backend:</strong> Django</li>
+        <li><strong>Frontend:</strong> HTML, CSS, JavaScript e Bootstrap</li>
+        <li><strong>Database:</strong> SQLite</li>
+        <li><strong>Autenticazione:</strong> Django Authentication</li>
+      </ul>
+      <p><strong>Caratteristiche Principali:</strong></p>
+      <ul>
+        <li>Gestione completa dei dipendenti.</li>
+        <li>Sistema di richiesta e accettazione per presenze e ferie.</li>
+        <li>Gestione delle buste paga con accesso riservato.</li>
+        <li>Generazione di report e statistiche dettagliate.</li>
+      </ul>
+      <a href="https://github.com/LorenzoSiena/HRMS-Human-Resource-Management-System" class="btn" target="_blank"
+        rel="noopener noreferrer">Vai al progetto</a>
+    </div>
+
+  </div>
+
+  <!-- A simple Wikipedia RAG Application -->
+  <div class="portfolio-block">
+    <div class="portfolio-text">
+      <h2 class="portfolio-title">A simple Wikipedia RAG Application</h2>
+
+      <img class="portfolio-image" src="/media/wiki_rag.png" alt="Wikipedia RAG Application" />
+      <h3 class="portfolio-subtitle">Applicazione web con Streamlit e LlamaIndex</h3>
+      <p>
+        Una semplice applicazione web creata con Streamlit che dimostra il funzionamento del RAG (Retrieval Augmented
+        Generation).
+        L'app utilizza LlamaIndex per caricare e interrogare contenuti da pagine di Wikipedia relative all'Intelligenza
+        Artificiale e al Machine Learning,
+        fornendo risposte basate sul contesto recuperato.
+      </p>
+      <p><strong>Tecnologie utilizzate:</strong></p>
+      <ul>
+        <li>Streamlit: Per l'interfaccia utente interattiva.</li>
+        <li>LlamaIndex: Framework per la costruzione di applicazioni LLM con dati esterni (Wikipedia).</li>
+        <li>OpenAI: Per modelli di embedding e modello linguistico (LLM).</li>
+        <li>WikipediaReader: Lettore dati di LlamaIndex per contenuti Wikipedia.</li>
+        <li>python-dotenv: Gestione variabili d'ambiente.</li>
+      </ul>
+
+      <a href="https://github.com/LorenzoSiena/WikipediaRAG/" class="btn" target="_blank" rel="noopener noreferrer">Vai
+        al progetto</a>
+    </div>
+  </div>
+
+
+
 
   <div class="portfolio-block">
-    <img src="https://via.placeholder.com/200" alt="Immagine progetto 1" />
     <div class="portfolio-text">
-      <h2 class="portfolio-title">Titolo Progetto 1</h2>
-      <h3 class="portfolio-subtitle">Sottotitolo Progetto 1</h3>
-      <p>Descrizione testuale del progetto 1, breve e chiara. Qui puoi inserire informazioni utili sul progetto, le tecnologie usate o i risultati ottenuti.</p>
-      <!-- Esempio bottone per link esterno -->
-      <a href="#" class="btn" target="_blank" rel="noopener noreferrer">Vai al progetto</a>
+      <h2 class="portfolio-title">CyberShop — Java for Android</h2>
+      <img class="portfolio-image" src="/media/cybershop.png" alt="Screenshot CyberShop" />
+      <h3 class="portfolio-subtitle">App di gestione aziendale a tema cyberpunk</h3>
+      <p>
+        Cybershop è un'app di gestione aziendale fittizia ambientata nell’anno 2079.
+        Il suo scopo è vendere protesi cibernetiche da visualizzare nell’app
+        attraverso la realtà aumentata o in 3D sotto forma di file STL, un formato CAD,
+        che una volta acquistato può essere stampato a casa
+        utilizzando una stampante 3D abilitata per la stampa di impianti
+        e circuiti elettronici biocompatibili.
+      </p>
+      <p>
+        Il progetto e la demo sono stati realizzati per la materia <em>Programmazione Mobile</em>.
+      </p>
+      <p><strong>Tecnologie e Servizi Utilizzati:</strong></p>
+      <ul>
+        <li><strong>Firebase (Google Cloud Services)</strong>:
+          <ul>
+            <li><strong>Authentication:</strong> gestione email, UID utente e autenticazione</li>
+            <li><strong>Realtime Database:</strong> lista prodotti, utenti e wishlist</li>
+            <li><strong>Storage:</strong> salvataggio immagini e file STL dei prodotti</li>
+          </ul>
+        </li>
+      </ul>
+      <p>
+        Le immagini e i testi sono stati generati con Scribble Diffusion e ChatGPT.
+        La demo è funzionale e responsive.
+      </p>
+      <p><em>Repository</em> e presentazione disponibili in PDF.</p>
+      <a href="https://raw.githubusercontent.com/LorenzoSiena/CyberShop/f45fd24a9cff8fceb29cae1a2a2859bb72f38183/Presentazione_app_CyberShop.pdf"
+        class="btn" target="_blank" rel="noopener noreferrer">Vai al pdf</a>
+      <a href="https://github.com/LorenzoSiena/CyberShop" class="btn" target="_blank" rel="noopener noreferrer">Vai al
+        progetto</a>
     </div>
   </div>
 
   <div class="portfolio-block">
-    <img src="https://via.placeholder.com/200" alt="Immagine progetto 2" />
     <div class="portfolio-text">
-      <h2 class="portfolio-title">Titolo Progetto 2</h2>
-      <h3 class="portfolio-subtitle">Sottotitolo Progetto 2</h3>
-      <p>Descrizione testuale del progetto 2, breve e chiara. Puoi aggiungere ulteriori dettagli o link utili.</p>
-      <a href="#" class="btn" target="_blank" rel="noopener noreferrer">Vai al progetto</a>
+      <h2 class="portfolio-title">Hack e Reverse Engineering di un Launchpad MK1</h2>
+      <img class="portfolio-image" src="/media/launchpad.png" alt="Hack e Reverse Engineering di un Launchpad MK1" />
+      <h3 class="portfolio-subtitle">Controllo LED via Python e MIDI</h3>
+      <p>
+        Il progetto nasce dalla curiosità di esplorare i limiti del protocollo USB e MIDI su un
+        <strong>Novation Launchpad MK1</strong>. brInizialmente, tramite <em>fuzzing</em> con PyUSB e pacchetti random,
+        sono riuscito ad accendere i LED del dispositivo, nonostante non fosse supportato su Linux.
+      </p>
+      <p>
+        Successivamente ho approfondito il funzionamento interno: il Launchpad è una griglia 9x9 di tasti illuminabili
+        (3 livelli di rosso e 3 di verde, combinabili in giallo), che risponde a comandi MIDI.
+        Ho sviluppato tre script Python per descrivere la matrice, controllarne i LED e inviare comandi sistematici,
+        usando un <code>wrapper</code> che sfrutta <code>amidi</code> come sottoprocesso.
+      </p>
+      <p>
+        Oltre al controllo delle luci, lo script riceve e stampa gli <strong>eventi MIDI</strong> dei tasti premuti,
+        trasformando il Launchpad in un’interfaccia interattiva.
+      </p>
+
+
+      <p>
+        In questo modo ho potuto accendere, spegnere e colorare i LED a piacimento, senza driver ufficiali,
+        arrivando persino a creare effetti visivi con pacchetti random e sequenze di spegnimento istantanee.
+      </p>
+      <a href="/media/hackpad.mp4" class="btn" target="_blank" rel="noopener noreferrer">Vai al video</a>
+      <a href="https://github.com/LorenzoSiena/-WIP-Reverse-Engeneering-Usb-Protocol-on-a-Novation-Launchpad"
+        class="btn" target="_blank" rel="noopener noreferrer">Vai al progetto su GitHub</a>
+      <a href="https://www.linkedin.com/posts/activity-7328426089456779265-nNAS?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC6mOeoBVQgd4y-2XUOGp19f1HXHsIYpHH8"
+        class="btn" target="_blank" rel="noopener noreferrer">Vai all'update su LinkedIn</a>
     </div>
   </div>
-   <div class="portfolio-block">
-    <img src="https://via.placeholder.com/200" alt="Immagine progetto 1" />
+
+
+  <!-- Server-ino -->
+  <div class="portfolio-block">
     <div class="portfolio-text">
-      <h2 class="portfolio-title">Titolo Progetto 1</h2>
-      <h3 class="portfolio-subtitle">Sottotitolo Progetto 1</h3>
-      <p>Descrizione testuale del progetto 1, breve e chiara. Qui puoi inserire informazioni utili sul progetto, le tecnologie usate o i risultati ottenuti.</p>
-      <!-- Esempio bottone per link esterno -->
-      <a href="#" class="btn" target="_blank" rel="noopener noreferrer">Vai al progetto</a>
+      <h2 class="portfolio-title">Server-ino — Bash script</h2>
+      <img class="portfolio-image" src="/media/serverino.png" alt="Server-ino" />
+      <h3 class="portfolio-subtitle">Mini interfaccia grafica per LAMPP</h3>
+      <p>
+        Una minuscola interfaccia grafica per LAMPP, scritta in Bash e tput (mini libreria grafica).
+        Ha lo scopo di avviare un server locale senza usare la riga di comando.
+      </p>
+
+      <a href="https://github.com/LorenzoSiena/serverino" class="btn" target="_blank" rel="noopener noreferrer">Vai al
+        progetto</a>
     </div>
   </div>
-    <div class="portfolio-block">
-    <img src="https://via.placeholder.com/200" alt="Immagine progetto 1" />
-    <div class="portfolio-text">
-      <h2 class="portfolio-title">Titolo Progetto 1</h2>
-      <h3 class="portfolio-subtitle">Sottotitolo Progetto 1</h3>
-      <p>Descrizione testuale del progetto 1, breve e chiara. Qui puoi inserire informazioni utili sul progetto, le tecnologie usate o i risultati ottenuti.</p>
-      <!-- Esempio bottone per link esterno -->
-      <a href="#" class="btn" target="_blank" rel="noopener noreferrer">Vai al progetto</a>
+
+  <!-- Johnny The CyberCar Assistant -->
+
+
+  <div class="portfolio-block">
+    <!-- SVG for GitHub logo -->
+    <a href="https://github.com/LorenzoSiena/Johnny-The-CyberCar-Assistant" class="github-logo" target="_blank"
+      rel="noopener noreferrer">
+      <svg height="32" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true" fill="var(--highlight-cyan)">
+        <path
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+      </svg>
+    </a>
+
+    <!-- Main Content Grid -->
+
+
+    <h2 class="portfolio-title">Johnny The CyberCar Assistant (Thesis)</h2>
+    <h3 class="portfolio-subtitle">
+      An AI Agent for automotive, RAG enabled, with voice commands, hosted locally.
+    </h3>
+    <!-- Image Gallery floats to the right -->
+    <div class="image-gallery">
+      <figure>
+        <img class="portfolio-image"  src="/media/jhonny.jpg"
+          alt="Logo Johnny The CyberCar Assistant" />
+        <figcaption>Logo Johnny The CyberCar Assistant</figcaption>
+      </figure>
+      <figure>
+        <img class="portfolio-image" src="/media/jhonny_qrcode.jpeg"
+          alt="QR Code generato con Stable Diffusion per il progetto Johnny" />
+        <figcaption>QR Code generato</figcaption>
+      </figure>
+    </div>
+    <p>
+      Johnny The CyberCar Assistant è un proof of concept (PoC) di un agente AI in RAG completamente locale innestato su un Opel Corsa B del 1997,
+       frutto della mia tesi triennale in ingegneria informatica all'Università di Catania. 
+    </p>
+
+    <h4 class="portfolio-section-title"><strong>Architettura del progetto</strong></h4>
+    <p>Il progetto è composto da 3 sistemi:</p>
+    <ul>
+      <li>
+        <strong>Un server Linux con una 1080 TI</strong> su cui gira Cheshire Cat AI, il modello in locale (LLAMA3),
+        il
+        sintetizzatore vocale e lo speech recognition (Whisper AI).
+      </li>
+      <li>
+        <strong>Un client montato in auto (Esp32)</strong> con modem 4g,un microfon, speaker e un modulo Edge di speech
+        recognition con
+        un piccolo modello di machine learning.
+      </li>
+      <li>
+        <strong>Le interfacce ESP32 con CANBUS</strong> per inviare e ricevere i dati della vettura
+      </li>
+    </ul>
+
+    <h4 class="portfolio-section-title"><strong>Descrizione e Funzionalità</strong></h4>
+    <p>
+      Ispirato a 
+      <a class = "golden" href="https://www.youtube.com/watch?v=5BsFnk83NMI"  target="_blank"
+          rel="noopener noreferrer"> KITT di Supercar (aka Knight Rider) </a>
+      , Johnny rende l'auto smart: 
+      grazie a un ESP32 collegato al CAN BUS e con modem 4g 
+      abilita in Edge un interfaccia vocale, memoria a lungo termine e controllo intelligente (via <b> Porta OBD-II</b>).
+      
+      <br>Tutto il resto del sistema AI viene eseguito da remoto su un server con GPU consumer (GTX 1080TI).
+    </p>
+    <p>
+      L'assistente è invocato dalla keyword <b>"Hey Johnny!"</b>, dopo di che é possibile attraverso comandi vocali agire in locale sui
+      dispositivi dell'auto (come alzare i finestrini) o parlare voice2voice in remoto col Chatbot, che risponde con il contesto dei
+      dati della macchina (posizione GPS, velocità, temperatura, etc), senza mai staccare le mani dal volante<br> 
+      Il database vettoriale Qdrant gestisce la memoria a breve/lungo
+      termine dell'assistente, abilitando una vera esperienza <b>RAG</b> (Retrieval-Augmented Generation).
+    </p>
+     <p>Tutti i servizi sono orchestrati con Docker Compose.</p>
+
+    <h4 class="portfolio-section-title"><strong>Pipeline Audio</strong></h4>
+    
+    
+    <p>
+    🎤 Voce utente<br>
+     ↓<br>
+    ❓ Se il comando è locale → esegue azione locale ⚙️<br>
+    Altrimenti:<br>
+    ↓<br>
+    🐱 contatta johnny il chatbot remoto<br>
+    ↓<br>
+    🌐 Cloudflared (autenticazione) <br>
+     ↓<br>
+    📝 WhisperAI (Voice2Text su GPU)<br>
+     ↓<br>
+    🧠 LLaMA3 (Ollama, inferenza su GPU)<br>
+     ↓<br>
+    🔊 Text2Speech (risposta vocale)<br>
+     ↓<br>
+    ❓ Loop: finché non rileva “stop”, torna a johnny 🐱
+    </p>
+    <h4 class="portfolio-section-title"><strong>Esempi di utilizzo</strong></h4>
+    <ul>
+      <li>"Che tempo fa ad Amdsterdam?" → "Lorenzo, ad Amsterdam ci sono 23 gradi".</li>
+      <li>"Arrivo a Berlino per ora di cena?" → "Sì Lorenzo, ma ti conviene fare benzina alla prossima stazione a
+        33km da
+        qui".</li>
+      <li>"Ho sentito un rumore strano, qualcosa che non va con l'auto?"→ "Lorenzo, dal tuo CAN bus leggo che hai un
+        problema al motore, ti consiglio di accostare il prima possibile".</li>
+    </ul>
+   
+
+
+    <p style="text-align: center; margin-top: 3rem;">
+      <em>N.B.</em> Il Progetto é completamente open-source,è stato realizzato in circa 2 mesi e mezzo,
+       é pensato per il riuso hardware e l'edge computing in ambito
+      automotive.
+      <br>architettura, immagini, video e tesi in pdf (ITA ONLY) completa sono disponibili nella repository.
+    </p>
+
+    <!-- Componenti sviluppate -->
+    <h4 class="portfolio-section-title" style="text-align: center;"><strong>Componenti sviluppate per il progetto</strong></h4>
+    <ul class="project-components">
+      <li class="project-component-item">
+        <p><strong>Local Whisper Cat:</strong> An official plugin Cheshire Cat AI to transcript locally on your gpu/cpu,
+          in Docker.</p>
+        <img class="portfolio-image" src="/media/local_whisper_cat_logo.png" alt="Screenshot Local Whisper Cat" />
+        <a href="https://github.com/LorenzoSiena/local_whisper_cat" class="btn" target="_blank"
+          rel="noopener noreferrer">GitHub</a>
+      </li>
+      <li class="project-component-item">
+        <p><strong>Chatty:</strong> Client vocale in Python per contattare il server Cheshire Cat AI.</p>
+        <img class="portfolio-image" src="/media/chatty_logo.png" alt="Screenshot Chatty" />
+        <a href="https://github.com/LorenzoSiena/chatty" class="btn" target="_blank"
+          rel="noopener noreferrer">GitHub</a>
+      </li>
+      <li class="project-component-item">
+        <p><strong>Chattino:</strong> Client vocale Arduino/C++ per ESP32 per contattare il server Cheshire Cat AI.</p>
+        <img class="portfolio-image" src="/media/chattino_logo.jpg" alt="Screenshot Chattino" />
+        <a href="https://github.com/LorenzoSiena/chattino" class="btn" target="_blank"
+          rel="noopener noreferrer">GitHub</a>
+        
+      </li>
+    </ul>
+
+    <!-- Sezione Tecnologie Coinvolte -->
+    <h4 class="portfolio-section-title" style="text-align: center;"><strong>Tecnologie Coinvolte</strong></h4>
+    <ul>
+      <li><b>Cheshire Cat AI Framork</b> (derivato da <b>LangChain</b> e <b>FastAPI</b>)</li>
+      <li><b>Large Language Models (LLM) </b> via <b>ollama</b> on a NVIDIA GPU with GTX 1080 TI </li>
+      <li><b>Qdrant</b> as Retrieval-Augmented Generation (RAG)</li>
+      <li><b>Whisper AI</b> local speech recognition on GPU </li>
+      <li><b>Docker & Docker Compose</b></li>
+      <li><b>Cloudflared</b> and Edge computing</li>
+      <li>Hardware <b>ESP32</b> + <b>Arduino</b></li>
+      <li>CAN BUS e OBD-II</li>
+    </ul>
+
+    <!-- Bottoni finali -->
+    <div class="btn-container">
+      <a href="https://github.com/LorenzoSiena/Johnny-The-CyberCar-Assistant" class="btn" target="_blank"
+        rel="noopener noreferrer">
+        Vai al progetto su GitHub
+      </a>
+      <a href="https://www.youtube.com/watch?v=7wSDzveUvfA" class="btn" target="_blank" rel="noopener noreferrer">
+        Guarda il video dimostrativo
+      </a>
     </div>
   </div>
-    <div class="portfolio-block">
-    <img src="https://via.placeholder.com/200" alt="Immagine progetto 1" />
+
+
+
+
+
+  <!-- Retro Museum -->
+  <div class="portfolio-block">
+
+    <!-- <img class="portfolio-image"  src="/media/retromuseum_home.png" alt="Retro Museum" /> -->
+    <!-- <img class="portfolio-image"  src="/media/retromuseum_login.png" alt="Retro Museum" /> -->
     <div class="portfolio-text">
-      <h2 class="portfolio-title">Titolo Progetto 1</h2>
-      <h3 class="portfolio-subtitle">Sottotitolo Progetto 1</h3>
-      <p>Descrizione testuale del progetto 1, breve e chiara. Qui puoi inserire informazioni utili sul progetto, le tecnologie usate o i risultati ottenuti.</p>
-      <!-- Esempio bottone per link esterno -->
-      <a href="#" class="btn" target="_blank" rel="noopener noreferrer">Vai al progetto</a>
+      <h2 class="portfolio-title">Retro Museum</h2>
+      <img class="portfolio-image" src="/media/retromuseum_about.png" alt="Retro Museum" />
+      <h3 class="portfolio-subtitle">Fake e-commerce a tema retro gaming in Laravel (PHP)</h3>
+      <p>
+        Retromuseum è un progetto di sviluppo web universitario su un fake e-commerce di una fittizia azienda catanese,
+        dove gli utenti potevano acquistare giochi e console usati, con uno stile visivo fortemente ispirato alla
+        classica grafica a 8 bit
+        <br>Inizialmente backend implementato in PHP puro,
+        poi migrata su Laravel.
+      </p>
+      <p>
+
+        Utilizza un database MySQL precompilato,
+        richiama l'API Spotify (OAuth 2.0) per l'ultimo podcast (falso) disponibile,
+        e utilizza MongoDB come database per il carrello (solo per ottenere punti extra per il progetto).
+      </p>
+      <p>
+        Include un sistema di login, con validazione client/server, una barra di ricerca e
+        contenuti dinamicamente generati via JS da api rawg.io.
+      </p>
+      <p> L'intera webapp é responsive da mobile. </p>
+      <a href="https://github.com/LorenzoSiena/Retromuseum" class="btn" target="_blank" rel="noopener noreferrer">Vai al
+        progetto</a>
     </div>
   </div>
-  <!-- Aggiungi qui altri blocchi portfolio -->
+
+  <!-- Cloud and On Premise Solution Projects -->
+  <h2 class="portfolio-title">Cloud and On Premise Solution Projects</h2>
+
+  <div class="portfolio-block">
+    <div class="portfolio-text">
+      <h2 class="portfolio-title">Cloud Gaming Bare Metal</h2>
+      <img class="portfolio-image" src="/media/deploy_nes.jpeg" alt="Cloud Gaming Bare Metal" />
+      <h3 class="portfolio-subtitle">Debian + Emulatore SNES + Sunshine</h3>
+      <p>
+        Una soluzione semplice di <strong>cloud gaming locale</strong>: su un vecchio laptop viene installato
+        Debian, un emulatore SNES e il server <em>Sunshine</em>.
+        In questo modo è possibile streammare giochi retro direttamente in rete e collegarsi da remoto
+        con <em>Moonlight</em>, senza container o virtualizzazione.
+      </p>
+      <strong>Tecnologie utilizzate:</strong> Sunshine, Moonlight, Cloudflared Tunnel, Bsnes, Raspberry, an old PC
+      as server.
+      <p><em>N.B.</em> Configurazione minimale e a costo zero, pensata per il riciclo hardware.</p>
+    </div>
+    <a href="https://www.linkedin.com/posts/activity-7283526476971347969-67ry?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC6mOeoBVQgd4y-2XUOGp19f1HXHsIYpHH8"
+      class="btn" target="_blank" rel="noopener noreferrer">Vai al post su linkedin</a>
+
+
+  </div>
+
+
+  <div class="portfolio-block">
+    <div class="portfolio-text">
+      <h2 class="portfolio-title">Chatbot Locale con Docker</h2>
+      <img class="portfolio-image" src="/media/deploy_ollama.png" alt="Chatbot Locale con Docker" />
+      <h3 class="portfolio-subtitle">Ollama + OpenWebUI + Cloudflare Tunnel</h3>
+      <p>
+        Un progetto di <strong>chatbot privato</strong> in locale, eseguito su un vecchio portatile
+        con <em>Docker</em>. Il modello (Gemma2 o LLaMA 3.2) gira in un container Ollama
+        con interfaccia web via OpenWebUI, accessibile su porta 3000.
+      </p>
+      <p>
+        In LAN è subito disponibile, mentre un <strong>Raspberry Pi</strong> con
+        <em>Cloudflare Tunnel</em> espone il servizio in modo sicuro anche da remoto,
+        tramite dominio personalizzato (.xyz) e autenticazione.
+      </p>
+      <p><strong>Tecnologie usate:</strong></p>
+      <ul>
+        <li>Ollama (local hosted AI backend)</li>
+        <li>LLama3.2 / Gemma2 (modelli opensource)</li>
+        <li>OpenWebUI (Frontend)</li>
+        <li>Docker & NVIDIA Container Toolkit</li>
+        <li>Raspberry Pi come tunnel e access point</li>
+        <li>Old PC con GPU o CPU multicore e almeno 4GB RAM</li>
+        <li>Cloudflare Tunnel per accesso remoto sicuro</li>
+      </ul>
+    </div>
+    <p><em>N.B.</em> Configurazione pensata per riciclare hardware ed evitare e-waste.</p>
+
+    <a href="https://www.linkedin.com/posts/activity-7249075606993203200-aQ1q?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC6mOeoBVQgd4y-2XUOGp19f1HXHsIYpHH8"
+      class="btn" target="_blank" rel="noopener noreferrer">Vai al post su linkedin Local Chatbot</a>
+  </div>
+
+
+
+
+
+  <!-- Il carosello / lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="close-btn">&times;</span>
+    <img class="lightbox-content" id="lightbox-image" src="" alt="Full size image" />
+  </div>
+
 
 </body>
+
 </html>
+<!--  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const imageLink = document.getElementById('image-link');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightbox-image');
+      const closeBtn = document.querySelector('.close-btn');
+
+      imageLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        const fullSizeImageSrc = event.currentTarget.querySelector('img').getAttribute('data-src');
+        lightboxImage.src = fullSizeImageSrc;
+        lightbox.style.display = 'flex';
+      });
+
+      closeBtn.addEventListener('click', () => {
+        lightbox.style.display = 'none';
+      });
+
+      lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) {
+          lightbox.style.display = 'none';
+        }
+      });
+    });
+  </script> -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('.portfolio-image');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const closeBtn = document.querySelector('.close-btn');
+
+    // Apri la lightbox quando un'immagine è cliccata
+    images.forEach((image) => {
+      image.addEventListener('click', (event) => {
+        lightbox.style.display = 'flex';
+        // Ottiene l'attributo `src` dell'immagine cliccata
+        lightboxImage.src = event.target.src;
+      });
+    });
+
+    // Chiudi la lightbox
+    closeBtn.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    // Chiudi lightbox cliccando fuori dall'immagine
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) {
+        lightbox.style.display = 'none';
+      }
+    });
+
+    // Navigazione da tastiera per chiusura
+    document.addEventListener('keydown', (event) => {
+      if (lightbox.style.display === 'flex' && event.key === 'Escape') {
+        lightbox.style.display = 'none';
+      }
+    });
+  });
+</script>
