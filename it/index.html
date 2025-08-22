@@ -368,6 +368,45 @@
     margin-left: 0;
     
 }
+
+/* Scroll to top button styles */
+.scroll-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background-color: var(--python-yellow);
+    color: var(--python-blue);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
+
+.scroll-to-top.show-btn {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Mobile specific styles for the scroll to top button */
+@media (max-width: 767px) {
+    .scroll-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 1rem;
+        right: 1rem;
+        font-size: 1.2rem;
+    }
+}
   </style>
 
 
@@ -813,7 +852,12 @@
     <span class="close-btn">&times;</span>
     <img class="lightbox-content" id="lightbox-image" src="" alt="Full size image" />
   </div>
-
+  <!-- The scroll to top button -->
+  <button id="scrollToTopBtn" class="scroll-to-top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2l-10 10h6v10h8v-10h6l-10-10z" />
+      </svg>
+  </button>
 
 </body>
 
@@ -879,4 +923,25 @@
       }
     });
   });
+
+
+  const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+// Scroll to top button functionality
+const scrollThreshold = 1500; // Show button after scrolling this many pixels
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > scrollThreshold) {
+        scrollToTopBtn.classList.add('show-btn');
+    } else {
+        scrollToTopBtn.classList.remove('show-btn');
+    }
+});
+
+scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
 </script>
