@@ -216,11 +216,11 @@
       /* Imposta il colore di riempimento */
     }
 
-.golden{
+    .golden {
 
-  color: goldenrod;
-  text-decoration: none;
-}
+      color: goldenrod;
+      text-decoration: none;
+    }
 
     /* 
     .project-components {
@@ -299,7 +299,7 @@
     /* --------------------
     Image Gallery
     -------------------- */
-/*     .image-gallery {
+    /*     .image-gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 1.5rem;
@@ -318,22 +318,23 @@
  
 
  /* Responsive image gallery */
-.image-gallery {
-    width: 100%;
-    margin: 0 auto 1.5rem auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    align-items: center;
-}
-        
-@media (min-width: 768px) {
     .image-gallery {
+      width: 100%;
+      margin: 0 auto 1.5rem auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .image-gallery {
         width: auto;
         float: right;
         margin-left: 2rem;
+      }
     }
-}
+
     .image-container {
       display: flex;
       flex-direction: column;
@@ -364,49 +365,113 @@
 
 
     .project-component-item .portfolio-image {
-    
-    margin-left: 0;
-    
-}
 
-/* Scroll to top button styles */
-.scroll-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 50px;
-    height: 50px;
-    background-color: var(--python-yellow);
-    color: var(--python-blue);
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 999;
-}
+      margin-left: 0;
 
-.scroll-to-top.show-btn {
-    opacity: 1;
-    visibility: visible;
-}
+    }
 
-/* Mobile specific styles for the scroll to top button */
-@media (max-width: 767px) {
+    /* Scroll to top button styles */
     .scroll-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      background-color: var(--python-yellow);
+      color: var(--python-blue);
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 999;
+    }
+
+    .scroll-to-top.show-btn {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Mobile specific styles for the scroll to top button */
+    @media (max-width: 767px) {
+      .scroll-to-top {
         width: 40px;
         height: 40px;
         bottom: 1rem;
         right: 1rem;
         font-size: 1.2rem;
+      }
     }
+
+    .portfolio-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
+
+.social-links {
+    /* Il posizionamento assoluto è stato rimosso */
+    display: flex;
+    gap: 1rem;
+    z-index: 1000;
+}
+
+    /* General link styling for social icons, applies to both SVG and text */
+    .social-links a {
+      display: flex;
+      /* Aligns SVG and text side-by-side */
+      align-items: center;
+      /* Centers them vertically */
+      gap: 0.5rem;
+      /* Adds space between icon and text */
+      text-decoration: none;
+      color: var(--text-color);
+      transition: color 0.3s ease;
+    }
+
+    /* Hover effect for the entire link */
+    .social-links a:hover {
+      color: var(--python-yellow);
+    }
+
+    .social-links a svg {
+      width: 45px;
+      height: auto;
+      /* fill: currentColor; */
+      fill: #0e76a8;
+
+      /* Inherits the color from the parent link */
+      transition: transform 0.3s ease;
+      background-color: white;
+      border-radius: 9px;
+    }
+
+    .social-links a:hover svg {
+      transform: scale(1.1);
+    }
+
+    /* Hide the text on small screens for a cleaner look */
+    .social-links .social-text {
+      display: none;
+    }
+
+    /* Show the text on larger screens */
+    @media (min-width: 768px) {
+      .social-links .social-text {
+        display: inline;
+      }
+    }
+    .social-text {
+      color: white;
+    }
   </style>
 
 
@@ -416,10 +481,42 @@
 </head>
 
 <body>
+  
+  <!-- Social media links container -->
 
-  <h1>Statix Portfolio di Lorenzo</h1>
-  <p><em>Work in progress</em></p>
-  <div class="portfolio-block">
+    <header class="portfolio-header">
+
+      <h1>Lorenzo Siena's <br> portfolio</h1>
+     <!--  <h4>ADD_Compressioni card</h4>
+      <h4>ADD_linkedin</h4>
+      <h4>Traduzione inglese</h4>
+      <h4>...</h4>
+ -->
+<div class="social-links">
+
+  
+      <!-- LinkedIn logo SVG with added text -->
+      <a href="https://www.linkedin.com/in/lorenzo-siena-ba213319a/" target="_blank" rel="noopener noreferrer"
+      aria-label="Vai al profilo LinkedIn">
+      <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path
+        d="M22.23 0H1.77C.8 0 0 .8 0 1.77v20.46C0 23.2 24.8 24 24 22.23V1.77C24 .8 23.2 0 22.23 0zM7.09 20.46H3.5V8.5h3.59v11.96zM5.3 7.07c-1.2 0-2.17-.98-2.17-2.17 0-1.2.97-2.17 2.17-2.17 1.2 0 2.17.97 2.17 2.17 0 1.19-.97 2.17-2.17 2.17zm15.16 13.39h-3.58V14.8c0-1.2-.42-2.02-1.5-2.02-1.23 0-1.97.83-1.97 2.02v5.66h-3.59s0-10.8 0-11.96h3.59v1.6c.55-.72 1.25-1.4 2.85-1.4 2.07 0 3.65 1.3 3.65 4.08v7.69z" />
+      </svg>
+      -->
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 50 50">
+        <path
+        d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z">
+      </path>
+    </svg>
+    <span class="social-text">Find me on LinkedIn</span>
+  </a>
+  
+</div>
+  
+</header>
+
+<p><em>Work in progress </em>👨🏻‍💻</p>
+<div class="portfolio-block">
 
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="github-logo"
       viewBox="0 0 16 16">
@@ -607,8 +704,7 @@
     <!-- Image Gallery floats to the right -->
     <div class="image-gallery">
       <figure>
-        <img class="portfolio-image"  src="/media/jhonny.jpg"
-          alt="Logo Johnny The CyberCar Assistant" />
+        <img class="portfolio-image" src="/media/jhonny.jpg" alt="Logo Johnny The CyberCar Assistant" />
         <figcaption>Logo Johnny The CyberCar Assistant</figcaption>
       </figure>
       <figure>
@@ -618,8 +714,9 @@
       </figure>
     </div>
     <p>
-      Johnny The CyberCar Assistant è un proof of concept (PoC) di un agente AI in RAG completamente locale innestato su un Opel Corsa B del 1997,
-       frutto della mia tesi triennale in ingegneria informatica all'Università di Catania. 
+      Johnny The CyberCar Assistant è un proof of concept (PoC) di un agente AI in RAG completamente locale innestato su
+      un Opel Corsa B del 1997,
+      frutto della mia tesi triennale in ingegneria informatica all'Università di Catania.
     </p>
 
     <h4 class="portfolio-section-title"><strong>Architettura del progetto</strong></h4>
@@ -642,44 +739,47 @@
 
     <h4 class="portfolio-section-title"><strong>Descrizione e Funzionalità</strong></h4>
     <p>
-      Ispirato a 
-      <a class = "golden" href="https://www.youtube.com/watch?v=5BsFnk83NMI"  target="_blank"
-          rel="noopener noreferrer"> KITT di Supercar (aka Knight Rider) </a>
-      , Johnny rende l'auto smart: 
-      grazie a un ESP32 collegato al CAN BUS e con modem 4g 
-      abilita in Edge un interfaccia vocale, memoria a lungo termine e controllo intelligente (via <b> Porta OBD-II</b>).
-      
+      Ispirato a
+      <a class="golden" href="https://www.youtube.com/watch?v=5BsFnk83NMI" target="_blank" rel="noopener noreferrer">
+        KITT di Supercar (aka Knight Rider) </a>
+      , Johnny rende l'auto smart:
+      grazie a un ESP32 collegato al CAN BUS e con modem 4g
+      abilita in Edge un interfaccia vocale, memoria a lungo termine e controllo intelligente (via <b> Porta
+        OBD-II</b>).
+
       <br>Tutto il resto del sistema AI viene eseguito da remoto su un server con GPU consumer (GTX 1080TI).
     </p>
     <p>
-      L'assistente è invocato dalla keyword <b>"Hey Johnny!"</b>, dopo di che é possibile attraverso comandi vocali agire in locale sui
-      dispositivi dell'auto (come alzare i finestrini) o parlare voice2voice in remoto col Chatbot, che risponde con il contesto dei
-      dati della macchina (posizione GPS, velocità, temperatura, etc), senza mai staccare le mani dal volante<br> 
+      L'assistente è invocato dalla keyword <b>"Hey Johnny!"</b>, dopo di che é possibile attraverso comandi vocali
+      agire in locale sui
+      dispositivi dell'auto (come alzare i finestrini) o parlare voice2voice in remoto col Chatbot, che risponde con il
+      contesto dei
+      dati della macchina (posizione GPS, velocità, temperatura, etc), senza mai staccare le mani dal volante<br>
       Il database vettoriale Qdrant gestisce la memoria a breve/lungo
       termine dell'assistente, abilitando una vera esperienza <b>RAG</b> (Retrieval-Augmented Generation).
     </p>
-     <p>Tutti i servizi sono orchestrati con Docker Compose.</p>
+    <p>Tutti i servizi sono orchestrati con Docker Compose.</p>
 
     <h4 class="portfolio-section-title"><strong>Pipeline Audio</strong></h4>
-    
-    
+
+
     <p>
-    🎤 Voce utente<br>
-     ↓<br>
-    ❓ Se il comando è locale → esegue azione locale ⚙️<br>
-    Altrimenti:<br>
-    ↓<br>
-    🐱 contatta johnny il chatbot remoto<br>
-    ↓<br>
-    🌐 Cloudflared (autenticazione) <br>
-     ↓<br>
-    📝 WhisperAI (Voice2Text su GPU)<br>
-     ↓<br>
-    🧠 LLaMA3 (Ollama, inferenza su GPU)<br>
-     ↓<br>
-    🔊 Text2Speech (risposta vocale)<br>
-     ↓<br>
-    ❓ Loop: finché non rileva “stop”, torna a johnny 🐱
+      🎤 Voce utente<br>
+      ↓<br>
+      ❓ Se il comando è locale → esegue azione locale ⚙️<br>
+      Altrimenti:<br>
+      ↓<br>
+      🐱 contatta johnny il chatbot remoto<br>
+      ↓<br>
+      🌐 Cloudflared (autenticazione) <br>
+      ↓<br>
+      📝 WhisperAI (Voice2Text su GPU)<br>
+      ↓<br>
+      🧠 LLaMA3 (Ollama, inferenza su GPU)<br>
+      ↓<br>
+      🔊 Text2Speech (risposta vocale)<br>
+      ↓<br>
+      ❓ Loop: finché non rileva “stop”, torna a johnny 🐱
     </p>
     <h4 class="portfolio-section-title"><strong>Esempi di utilizzo</strong></h4>
     <ul>
@@ -690,18 +790,19 @@
       <li>"Ho sentito un rumore strano, qualcosa che non va con l'auto?"→ "Lorenzo, dal tuo CAN bus leggo che hai un
         problema al motore, ti consiglio di accostare il prima possibile".</li>
     </ul>
-   
+
 
 
     <p style="text-align: center; margin-top: 3rem;">
       <em>N.B.</em> Il Progetto é completamente open-source,è stato realizzato in circa 2 mesi e mezzo,
-       é pensato per il riuso hardware e l'edge computing in ambito
+      é pensato per il riuso hardware e l'edge computing in ambito
       automotive.
       <br>architettura, immagini, video e tesi in pdf (ITA ONLY) completa sono disponibili nella repository.
     </p>
 
     <!-- Componenti sviluppate -->
-    <h4 class="portfolio-section-title" style="text-align: center;"><strong>Componenti sviluppate per il progetto</strong></h4>
+    <h4 class="portfolio-section-title" style="text-align: center;"><strong>Componenti sviluppate per il
+        progetto</strong></h4>
     <ul class="project-components">
       <li class="project-component-item">
         <p><strong>Local Whisper Cat:</strong> An official plugin Cheshire Cat AI to transcript locally on your gpu/cpu,
@@ -721,7 +822,7 @@
         <img class="portfolio-image" src="/media/chattino_logo.jpg" alt="Screenshot Chattino" />
         <a href="https://github.com/LorenzoSiena/chattino" class="btn" target="_blank"
           rel="noopener noreferrer">GitHub</a>
-        
+
       </li>
     </ul>
 
@@ -854,9 +955,9 @@
   </div>
   <!-- The scroll to top button -->
   <button id="scrollToTopBtn" class="scroll-to-top">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2l-10 10h6v10h8v-10h6l-10-10z" />
-      </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2l-10 10h6v10h8v-10h6l-10-10z" />
+    </svg>
   </button>
 
 </body>
@@ -927,21 +1028,21 @@
 
   const scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
-// Scroll to top button functionality
-const scrollThreshold = 1500; // Show button after scrolling this many pixels
+  // Scroll to top button functionality
+  const scrollThreshold = 1500; // Show button after scrolling this many pixels
 
-window.addEventListener('scroll', () => {
+  window.addEventListener('scroll', () => {
     if (window.scrollY > scrollThreshold) {
-        scrollToTopBtn.classList.add('show-btn');
+      scrollToTopBtn.classList.add('show-btn');
     } else {
-        scrollToTopBtn.classList.remove('show-btn');
+      scrollToTopBtn.classList.remove('show-btn');
     }
-});
+  });
 
-scrollToTopBtn.addEventListener('click', () => {
+  scrollToTopBtn.addEventListener('click', () => {
     window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+      top: 0,
+      behavior: 'smooth'
     });
-});
+  });
 </script>
