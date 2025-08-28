@@ -10,7 +10,7 @@ body {
     padding: 0 1rem;
     background: #2b2e43;
     /* Un grigio-blu scuro, comune nei temi di codice */
-
+    z-index: 2;
     color: #f8f8f2;
     /* Testo chiaro */
 }
@@ -210,7 +210,9 @@ li {
     color: goldenrod;
     text-decoration: none;
 }
-
+.c{
+    text-align: center;
+}
 /* 
     .project-components {
       list-style-type: none;
@@ -457,8 +459,10 @@ figcaption {
 /* Show the text on larger screens */
 @media (min-width: 768px) {
     .social-links .social-text {
-        display: inline;
+        display: block;
+        
     }
+
 }
 
 .social-text {
@@ -673,3 +677,32 @@ figcaption {
   -webkit-user-select: none;
   pointer-events: auto; /* i link rimangono cliccabili */
 }
+.portfolio-block {
+    position: relative; /* Indispensabile per posizionare il cartellino */
+}
+.tag-container {
+    position: absolute;
+    top: -1.25rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem; /* Spazio tra i tag */
+    z-index: -1;
+   /* padding-top: 1rem; /* Aggiunto padding per migliorare il layout */
+
+
+}
+
+ .bookmark-tag {
+            background-color: #ffd43b;
+            color: black;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            
+            letter-spacing: 1px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            white-space: nowrap; /* Impedisce che il testo si rompa su più righe */
+        }
+        
