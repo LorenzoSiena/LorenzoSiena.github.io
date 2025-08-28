@@ -1,5 +1,3 @@
-/* 
-
 document.addEventListener('DOMContentLoaded', () => {
     // ---------------- LIGHTBOX ----------------
     const images = document.querySelectorAll('.portfolio-image');
@@ -7,115 +5,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxImage = document.getElementById('lightbox-image');
     const closeBtn = document.querySelector('.close-btn');
 
+
     if (images && lightbox && lightboxImage && closeBtn) {
+        // --- Preload immagini ---
+        images.forEach((image) => {
+            const preloader = new Image();
+            preloader.src = image.currentSrc || image.src; // forziamo il browser a caricare
+        })
         images.forEach((image) => {
             image.addEventListener('click', (event) => {
                 lightbox.style.display = 'flex';
-                lightboxImage.src = event.target.src;
+                lightboxImage.src = event.target.currentSrc;
             });
-        });
-
-        closeBtn.addEventListener('click', () => {
-            lightbox.style.display = 'none';
-        });
-
-        lightbox.addEventListener('click', (event) => {
-            if (event.target === lightbox) {
-                lightbox.style.display = 'none';
-            }
-        });
-
-        document.addEventListener('keydown', (event) => {
-            if (lightbox.style.display === 'flex' && event.key === 'Escape') {
-                lightbox.style.display = 'none';
-            }
-        });
-    }
-
-    // ---------------- SCROLL TO TOP ----------------
-    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-    const scrollThreshold = 1500;
-
-    if (scrollToTopBtn) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > scrollThreshold) {
-                scrollToTopBtn.classList.add('show-btn');
-            } else {
-                scrollToTopBtn.classList.remove('show-btn');
-            }
-        });
-
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
-
-    // ---------------- MOBILE CARD EXPANSION FIX ----------------
-    const portfolioBlocks = document.querySelectorAll('.portfolio-block');
-    let lastOpenedBlock = null; // traccia l'ultima card aperta
-
-    portfolioBlocks.forEach(block => {
-        const content = block.querySelector('.project-details-content');
         
-        block.addEventListener('click', (event) => {
-            if (event.target.tagName === 'A' || event.target.closest('a')) {
-                return;
-            }
-
-            const isActive = content.classList.contains('active');
-            
-            // salva posizione corrente dello scroll
-            const currentScroll = window.scrollY;
-
-            if (isActive) {
-                // se è l'ultima card aperta, non chiuderla
-                if (block === lastOpenedBlock) return;
-
-                content.style.maxHeight = null;
-                content.classList.remove('active');
-
-            } else {
-                // apri card
-                content.style.maxHeight = content.scrollHeight + 'px';
-                content.classList.add('active');
-
-                // aggiorna l'ultima card aperta
-                lastOpenedBlock = block;
-            }
-
-            // ripristina lo scroll alla posizione precedente
-            window.scrollTo({ top: currentScroll });
-        });
-    });
-
-    // Fix per iOS doppio click
-    document.body.style.cursor = 'default';
-});
- */
-
-document.addEventListener('DOMContentLoaded', () => {
-    // ---------------- LIGHTBOX ----------------
-    const images = document.querySelectorAll('.portfolio-image');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImage = document.getElementById('lightbox-image');
-    const closeBtn = document.querySelector('.close-btn');
-
-    if (images && lightbox && lightboxImage && closeBtn) {
-        images.forEach((image) => {
-            image.addEventListener('click', (event) => {
-                lightbox.style.display = 'flex';
-                lightboxImage.src = event.target.src;
-            });
         });
 
         closeBtn.addEventListener('click', () => {
             lightbox.style.display = 'none';
         });
 
-   
+
         lightbox.addEventListener('click', (event) => {
             if (event.target === lightbox || event.target === lightboxImage) {
                 lightbox.style.display = 'none';
@@ -128,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
 
     // ---------------- SCROLL TO TOP ----------------
     const scrollToTopBtn = document.getElementById('scrollToTopBtn');

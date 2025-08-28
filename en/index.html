@@ -1,99 +1,539 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfolio di Lorenzo - Work in Progress</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-    .portfolio-block {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      margin-bottom: 2rem;
-      padding: 1rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      transition: box-shadow 0.3s ease;
-    }
-    .portfolio-block:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .portfolio-block img {
-      max-width: 200px;
-      height: auto;
-      border-radius: 6px;
-      flex-shrink: 0;
-      object-fit: cover;
-    }
-    .portfolio-text {
-      flex: 1;
-    }
-    .portfolio-title {
-      font-size: 1.5rem;
-      margin: 0 0 0.3rem 0;
-    }
-    .portfolio-subtitle {
-      font-size: 1.1rem;
-      color: #666;
-      margin: 0 0 1rem 0;
-      font-style: italic;
-    }
-    p {
-      line-height: 1.5;
-    }
-    /* Bottone per esempio futuro */
-    .btn {
-      display: inline-block;
-      padding: 0.4rem 1rem;
-      margin-top: 0.5rem;
-      background-color: #007bff;
-      color: white;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: bold;
-      transition: background-color 0.2s ease;
-    }
-    .btn:hover {
-      background-color: #0056b3;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorenzo Siena's Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #2b2e43;
+            color: #f8f8f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: auto;
+            padding: 1rem;
+        }
+
+        header {
+            padding: 3rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        header .subtitle {
+            font-size: 1.25rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            color: white;
+        }
+        
+        @media (min-width: 640px) {
+            header h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            header h1 {
+                font-size: 3.75rem;
+            }
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.05);
+            background-color: rgba(107, 114, 128, 0.5);
+        }
+        
+        .social-links span {
+            display: none;
+            color: white;
+        }
+        
+        @media (min-width: 640px) {
+            .social-links span {
+                display: inline;
+            }
+        }
+        
+        .social-links svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .portfolio-block {
+            background-color: #151822;
+            border: 2px solid #124d7d;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .portfolio-block:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .block-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .block-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFD43B;
+            margin: 0;
+        }
+        
+        @media (min-width: 640px) {
+            .block-header h2 {
+                font-size: 1.875rem;
+            }
+        }
+
+        .block-header h3 {
+            font-size: 1.125rem;
+            font-style: italic;
+            margin-top: 0.5rem;
+            color: #bd93f9;
+        }
+        
+        @media (min-width: 640px) {
+            .block-header h3 {
+                font-size: 1.25rem;
+            }
+        }
+
+        .block-header img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 1rem;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .block-header img:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (min-width: 640px) {
+            .block-header img {
+                float: right;
+                margin-left: 2rem;
+                margin-bottom: 1rem;
+                max-width: 250px; /* Reduced image size for better flow */
+            }
+        }
+
+        .block-content {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: #f8f8f2;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .block-content.expanded {
+            max-height: 2000px; /* Adjust as needed */
+            opacity: 1;
+            margin-top: 1rem;
+        }
+
+        .block-content h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .block-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .links-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .links-container a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #306998;
+            color: #FFD43B;
+            border: 2px solid #306998;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.4s ease-in-out;
+            text-decoration: none;
+        }
+
+        .links-container a:hover {
+            background-color: #FFD43B;
+            color: #306998;
+            border-color: #FFD43B;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #FFD43B;
+            color: #306998;
+            border-radius: 9999px;
+            padding: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top svg {
+            fill: currentColor;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 3rem 0 1.5rem;
+            text-align: center;
+            color: white;
+        }
+        
+        @media (min-width: 640px) {
+            .section-title {
+                font-size: 2.25rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1 class="text-white">
+                Lorenzo Siena's <br class="md-hidden" /> portfolio
+            </h1>
+            <p class="subtitle">
+                Work in progress 👨🏻‍💻
+            </p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/lorenzo-siena-ba213319a/" target="_blank" rel="noopener noreferrer" aria-label="Vai al profilo LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 50 50" class="fill-[#0e76a8] bg-white rounded-lg">
+                        <path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z" />
+                    </svg>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/LorenzoSiena" target="_blank" rel="noopener noreferrer" aria-label="Vai al profilo GitHub">
+                    <svg viewBox="0 0 24 24" fill="#FFD43B" class="fill-current">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.111.82-.25.82-.557 0-.275-.01-1.004-.01-1.972-3.342.727-4.04-1.61-4.04-1.61-.546-1.387-1.332-1.758-1.332-1.758-1.088-.745.083-.73.083-.73 1.205.086 1.838 1.238 1.838 1.238 1.07 1.835 2.809 1.305 3.492.998.108-.775.419-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.225-3.22-.123-.3-.53-1.524.116-3.177 0 0 1-.32 3.3.123.953-.265 1.966-.397 2.97-.397 1.004 0 2.017.132 2.97.397 2.3-1.442 3.3-.123 3.3-.123.645 1.653.238 2.877.116 3.177.76.84 1.225 1.91 1.225 3.22 0 4.61-2.802 5.624-5.475 5.922.43.37.81 1.096.81 2.21 0 1.604-.015 2.89-.015 3.284 0 .31.21.67.825.556C20.565 21.795 24 17.29 24 12c0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </header>
+        
+        <main>
+            <!-- Blocco HRMS -->
+            <div class="portfolio-block" data-title="HRMS — Django with Python" data-subtitle="Un gestionale per le Risorse Umane sviluppato in Django" data-image="https://placehold.co/250x150/306998/FFD43B?text=HRMS+Logo" data-links='[{"text": "Vai al progetto", "url": "https://github.com/LorenzoSiena/HRMS-Human-Resource-Management-System"}]'>
+                <div class="block-header">
+                    <h2>HRMS — Django with Python</h2>
+                    <img src="/media/HRMS_logo.png" alt="Screenshot di HRMS — Django with Python">
+                    <h3>Un gestionale per le Risorse Umane sviluppato in Django</h3>
+                </div>
+                <div class="block-content">
+                    <p>
+                        Un'applicazione web per la gestione efficiente del personale in piccole e medie imprese. Il sistema centralizza e automatizza processi HR chiave, tra cui la gestione dei dipendenti, il monitoraggio delle presenze, la gestione delle ferie e l'elaborazione delle buste paga. Ha un login, un sistema di registrazione, autenticazione e offre inoltre funzionalità avanzate come la generazione di report sulle performance e un sistema di notifiche per le comunicazioni aziendali.
+                    </p>
+                    <p><strong>Tecnologie utilizzate:</strong></p>
+                    <ul>
+                        <li><strong>Backend:</strong> Django</li>
+                        <li><strong>Frontend:</strong> HTML, CSS, JavaScript e Bootstrap</li>
+                        <li><strong>Database:</strong> SQLite</li>
+                        <li><strong>Autenticazione:</strong> Django Authentication</li>
+                    </ul>
+                    <p><strong>Caratteristiche Principali:</strong></p>
+                    <ul>
+                        <li>Gestione completa dei dipendenti.</li>
+                        <li>Sistema di richiesta e accettazione per presenze e ferie.</li>
+                        <li>Gestione delle buste paga con accesso riservato.</li>
+                        <li>Generazione di report e statistiche dettagliate.</li>
+                    </ul>
+                    <div class="links-container">
+                        <a href="https://github.com/LorenzoSiena/HRMS-Human-Resource-Management-System" target="_blank" rel="noopener noreferrer">Vai al progetto</a>
+                    </div>
+                </div>
+            </div>
 
-  <h1>Portfolio di Lorenzo</h1>
-  <p><em>Work in progress: questa pagina mostra alcuni esempi di blocchi portfolio, personalizzali come vuoi.</em></p>
+            <!-- Blocco Wikipedia RAG -->
+            <div class="portfolio-block" data-title="A simple Wikipedia RAG Application" data-subtitle="Applicazione web con Streamlit e LlamaIndex" data-image="https://placehold.co/250x150/306998/FFD43B?text=Wiki+RAG" data-links='[{"text": "Vai al progetto", "url": "https://github.com/LorenzoSiena/WikipediaRAG/"}]'>
+                <div class="block-header">
+                    <h2>A simple Wikipedia RAG Application</h2>
+                    <img src="https://placehold.co/250x150/306998/FFD43B?text=Wiki+RAG" alt="Screenshot di A simple Wikipedia RAG Application">
+                    <h3>Applicazione web con Streamlit e LlamaIndex</h3>
+                </div>
+                <div class="block-content">
+                    <p>
+                        Una semplice applicazione web creata con Streamlit che dimostra il funzionamento del RAG (Retrieval Augmented Generation). L'app utilizza LlamaIndex per caricare e interrogare contenuti da pagine di Wikipedia relative all'Intelligenza Artificiale e al Machine Learning, fornendo risposte basate sul contesto recuperato.
+                    </p>
+                    <p><strong>Tecnologie utilizzate:</strong></p>
+                    <ul>
+                        <li>Streamlit: Per l'interfaccia utente interattiva.</li>
+                        <li>LlamaIndex: Framework per la costruzione di applicazioni LLM con dati esterni (Wikipedia).</li>
+                        <li>OpenAI: Per modelli di embedding e modello linguistico (LLM).</li>
+                        <li>WikipediaReader: Lettore dati di LlamaIndex per contenuti Wikipedia.</li>
+                        <li>python-dotenv: Gestione variabili d'ambiente.</li>
+                    </ul>
+                    <div class="links-container">
+                        <a href="https://github.com/LorenzoSiena/WikipediaRAG/" target="_blank" rel="noopener noreferrer">Vai al progetto</a>
+                    </div>
+                </div>
+            </div>
 
-  <div class="portfolio-block">
-    <img src="https://via.placeholder.com/200" alt="Immagine progetto 1" />
-    <div class="portfolio-text">
-      <h2 class="portfolio-title">Titolo Progetto 1</h2>
-      <h3 class="portfolio-subtitle">Sottotitolo Progetto 1</h3>
-      <p>Descrizione testuale del progetto 1, breve e chiara. Qui puoi inserire informazioni utili sul progetto, le tecnologie usate o i risultati ottenuti.</p>
-      <!-- Esempio bottone per link esterno -->
-      <a href="#" class="btn" target="_blank" rel="noopener noreferrer">Vai al progetto</a>
+            <!-- Blocco CyberShop -->
+            <div class="portfolio-block" data-title="CyberShop — Java for Android" data-subtitle="App di gestione aziendale a tema cyberpunk" data-image="https://placehold.co/250x150/306998/FFD43B?text=CyberShop" data-links='[{"text": "Vai al pdf", "url": "https://raw.githubusercontent.com/LorenzoSiena/CyberShop/f45fd24a9cff8fceb29cae1a2a2859bb72f38183/Presentazione_app_CyberShop.pdf"}, {"text": "Vai al progetto", "url": "https://github.com/LorenzoSiena/CyberShop"}]'>
+                <div class="block-header">
+                    <h2>CyberShop — Java for Android</h2>
+                    <img src="https://placehold.co/250x150/306998/FFD43B?text=CyberShop" alt="Screenshot di CyberShop — Java for Android">
+                    <h3>App di gestione aziendale a tema cyberpunk</h3>
+                </div>
+                <div class="block-content">
+                    <p>
+                        Cybershop è un'app di gestione aziendale fittizia ambientata nell’anno 2079. Il suo scopo è vendere protesi cibernetiche da visualizzare nell’app attraverso la realtà aumentata o in 3D sotto forma di file STL, un formato CAD, che una volta acquistato può essere stampato a casa utilizzando una stampante 3D abilitata per la stampa di impianti e circuiti elettronici biocompatibili.
+                    </p>
+                    <p>
+                        Il progetto e la demo sono stati realizzati per la materia <em>Programmazione Mobile</em>.
+                    </p>
+                    <p><strong>Tecnologie e Servizi Utilizzati:</strong></p>
+                    <ul>
+                        <li><strong>Firebase (Google Cloud Services)</strong>:
+                            <ul>
+                                <li><strong>Authentication:</strong> gestione email, UID utente e autenticazione</li>
+                                <li><strong>Realtime Database:</strong> lista prodotti, utenti e wishlist</li>
+                                <li><strong>Storage:</strong> salvataggio immagini e file STL dei prodotti</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>Le immagini e i testi sono stati generati con Scribble Diffusion e ChatGPT. La demo è funzionale e responsive.</p>
+                    <div class="links-container">
+                        <a href="https://raw.githubusercontent.com/LorenzoSiena/CyberShop/f45fd24a9cff8fceb29cae1a2a2859bb72f38183/Presentazione_app_CyberShop.pdf" target="_blank" rel="noopener noreferrer">Vai al pdf</a>
+                        <a href="https://github.com/LorenzoSiena/CyberShop" target="_blank" rel="noopener noreferrer">Vai al progetto</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Blocco Johnny The CyberCar Assistant -->
+            <div class="portfolio-block" data-title="Johnny The CyberCar Assistant (Thesis)" data-subtitle="An AI Agent for automotive, RAG enabled, with voice commands, hosted locally." data-image="https://placehold.co/250x150/306998/FFD43B?text=Johnny+The+CyberCar" data-links='[{"text": "Vai al progetto su GitHub", "url": "https://github.com/LorenzoSiena/Johnny-The-CyberCar-Assistant"}, {"text": "Guarda il video dimostrativo", "url": "https://www.youtube.com/watch?v=7wSDzveUvfA"}]'>
+                <div class="block-header">
+                    <h2>Johnny The CyberCar Assistant (Thesis)</h2>
+                    <img src="https://placehold.co/250x150/306998/FFD43B?text=Johnny+The+CyberCar" alt="Screenshot di Johnny The CyberCar Assistant (Thesis)">
+                    <h3>An AI Agent for automotive, RAG enabled, with voice commands, hosted locally.</h3>
+                </div>
+                <div class="block-content">
+                    <p>
+                        Johnny The CyberCar Assistant è un proof of concept (PoC) di un agente AI in RAG completamente locale innestato su un Opel Corsa B del 1997, frutto della mia tesi triennale in ingegneria informatica all'Università di Catania.
+                    </p>
+                    <h4><strong>Architettura del progetto</strong></h4>
+                    <p>Il progetto è composto da 3 sistemi:</p>
+                    <ul>
+                        <li><strong>Un server Linux con una 1080 TI</strong> su cui gira Cheshire Cat AI, il modello in locale (LLAMA3), il sintetizzatore vocale e lo speech recognition (Whisper AI).</li>
+                        <li><strong>Un client montato in auto (Esp32)</strong> con modem 4g, un microfono, speaker e un modulo Edge di speech recognition con un piccolo modello di machine learning.</li>
+                        <li><strong>Le interfacce ESP32 con CANBUS</strong> per inviare e ricevere i dati della vettura</li>
+                    </ul>
+                    <h4><strong>Descrizione e Funzionalità</strong></h4>
+                    <p>
+                        Ispirato a <a href="https://www.youtube.com/watch?v=5BsFnk83NMI" target="_blank" rel="noopener noreferrer">KITT di Supercar (aka Knight Rider)</a>, Johnny rende l'auto smart: grazie a un ESP32 collegato al CAN BUS e con modem 4g abilita in Edge un'interfaccia vocale, memoria a lungo termine e controllo intelligente (via <b>Porta OBD-II</b>). Tutto il resto del sistema AI viene eseguito da remoto su un server con GPU consumer (GTX 1080TI).
+                    </p>
+                    <p>
+                        L'assistente è invocato dalla keyword <b>"Hey Johnny!"</b>, dopo di che è possibile attraverso comandi vocali agire in locale sui dispositivi dell'auto (come alzare i finestrini) o parlare voice2voice in remoto col Chatbot, che risponde con il contesto dei dati della macchina (posizione GPS, velocità, temperatura, etc), senza mai staccare le mani dal volante. Il database vettoriale Qdrant gestisce la memoria a breve/lungo termine dell'assistente, abilitando una vera esperienza <b>RAG</b> (Retrieval-Augmented Generation).
+                    </p>
+                    <p>Tutti i servizi sono orchestrati con Docker Compose.</p>
+                    <h4><strong>Pipeline Audio</strong></h4>
+                    <p style="text-align: center;">
+                        🎤 Voce utente<br/>
+                        ↓<br/>
+                        ❓ Se il comando è locale → esegue azione locale ⚙️<br/>
+                        Altrimenti:<br/>
+                        ↓<br/>
+                        🐱 contatta johnny il chatbot remoto<br/>
+                        ↓<br/>
+                        🌐 Cloudflared (autenticazione) <br/>
+                        ↓<br/>
+                        📝 WhisperAI (Voice2Text su GPU)<br/>
+                        ↓<br/>
+                        � LLaMA3 (Ollama, inferenza su GPU)<br/>
+                        ↓<br/>
+                        🔊 Text2Speech (risposta vocale)<br/>
+                        ↓<br/>
+                        ❓ Loop: finché non rileva “stop”, torna a johnny 🐱
+                    </p>
+                    <h4><strong>Esempi di utilizzo</strong></h4>
+                    <ul>
+                        <li>"Che tempo fa ad Amdsterdam?" → "Lorenzo, ad Amsterdam ci sono 23 gradi".</li>
+                        <li>"Arrivo a Berlino per ora di cena?" → "Sì Lorenzo, ma ti conviene fare benzina alla prossima stazione a 33km da qui".</li>
+                        <li>"Ho sentito un rumore strano, qualcosa che non va con l'auto?"→ "Lorenzo, dal tuo CAN bus leggo che hai un problema al motore, ti consiglio di accostare il prima possibile".</li>
+                    </ul>
+                    <div class="links-container">
+                        <a href="https://github.com/LorenzoSiena/Johnny-The-CyberCar-Assistant" target="_blank" rel="noopener noreferrer">Vai al progetto su GitHub</a>
+                        <a href="https://www.youtube.com/watch?v=7wSDzveUvfA" target="_blank" rel="noopener noreferrer">Guarda il video dimostrativo</a>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Cloud and On Premise Solution Projects</h2>
+
+            <!-- Blocco Cloud Gaming -->
+            <div class="portfolio-block" data-title="Cloud Gaming Bare Metal" data-subtitle="Debian + Emulatore SNES + Sunshine" data-image="https://placehold.co/250x150/306998/FFD43B?text=Cloud+Gaming" data-links='[{"text": "Vai al post su LinkedIn", "url": "https://www.linkedin.com/posts/activity-7283526476971347969-67ry?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC6mOeoBVQgd4y-2XUOGp19f1HXHsIYpHH8"}]'>
+                <div class="block-header">
+                    <h2>Cloud Gaming Bare Metal</h2>
+                    <img src="https://placehold.co/250x150/306998/FFD43B?text=Cloud+Gaming" alt="Screenshot di Cloud Gaming Bare Metal">
+                    <h3>Debian + Emulatore SNES + Sunshine</h3>
+                </div>
+                <div class="block-content">
+                    <p>
+                        Una soluzione semplice di <strong>cloud gaming locale</strong>: su un vecchio laptop viene installato Debian, un emulatore SNES e il server <em>Sunshine</em>. In questo modo è possibile streammare giochi retro direttamente in rete e collegarsi da remoto con <em>Moonlight</em>, senza container o virtualizzazione.
+                    </p>
+                    <p><strong>Tecnologie utilizzate:</strong> Sunshine, Moonlight, Cloudflared Tunnel, Bsnes, Raspberry, an old PC as server.</p>
+                    <p><em>N.B.</em> Configurazione minimale e a costo zero, pensata per il riciclo hardware.</p>
+                    <div class="links-container">
+                        <a href="https://www.linkedin.com/posts/activity-7283526476971347969-67ry?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC6mOeoBVQgd4y-2XUOGp19f1HXHsIYpHH8" target="_blank" rel="noopener noreferrer">Vai al post su LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blocco Chatbot Locale -->
+            <div class="portfolio-block" data-title="Chatbot Locale con Docker" data-subtitle="Ollama + OpenWebUI + Cloudflare Tunnel" data-image="https://placehold.co/250x150/306998/FFD43B?text=Chatbot+Docker" data-links='[{"text": "Vai al post su LinkedIn", "url": "https://www.linkedin.com/posts/activity-7249075606993203200-aQ1q?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC6mOeoBVQgd4y-2XUOGp19f1HXHsIYpHH8"}]'>
+                <div class="block-header">
+                    <h2>Chatbot Locale con Docker</h2>
+                    <img src="https://placehold.co/250x150/306998/FFD43B?text=Chatbot+Docker" alt="Screenshot di Chatbot Locale con Docker">
+                    <h3>Ollama + OpenWebUI + Cloudflare Tunnel</h3>
+                </div>
+                <div class="block-content">
+                    <p>
+                        Un progetto di <strong>chatbot privato</strong> in locale, eseguito su un vecchio portatile con <em>Docker</em>. Il modello (Gemma2 o LLaMA 3.2) gira in un container Ollama con interfaccia web via OpenWebUI, accessibile su porta 3000. In LAN è subito disponibile, mentre un <strong>Raspberry Pi</strong> con <em>Cloudflare Tunnel</em> espone il servizio in modo sicuro anche da remoto, tramite dominio personalizzato (.xyz) e autenticazione.
+                    </p>
+                    <p><strong>Tecnologie usate:</strong></p>
+                    <ul>
+                        <li>Ollama (local hosted AI backend)</li>
+                        <li>LLama3.2 / Gemma2 (modelli opensource)</li>
+                        <li>OpenWebUI (Frontend)</li>
+                        <li>Docker & NVIDIA Container Toolkit</li>
+                        <li>Raspberry Pi come tunnel e access point</li>
+                        <li>Cloudflare Tunnel per accesso remoto sicuro</li>
+                    </ul>
+                    <p><em>N.B.</em> Configurazione pensata per riciclare hardware ed evitare e-waste.</p>
+                    <div class="links-container">
+                        <a href="https://www.linkedin.com/posts/activity-7249075606993203200-aQ1q?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC6mOeoBVQgd4y-2XUOGp19f1HXHsIYpHH8" target="_blank" rel="noopener noreferrer">Vai al post su LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <div class="scroll-to-top" id="scrollToTopBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M12 2l-10 10h6v10h8v-10h6l-10-10z" />
+            </svg>
+        </div>
     </div>
-  </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const portfolioBlocks = document.querySelectorAll('.portfolio-block');
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
-  <div class="portfolio-block">
-    <img src="https://via.placeholder.com/200" alt="Immagine progetto 2" />
-    <div class="portfolio-text">
-      <h2 class="portfolio-title">Titolo Progetto 2</h2>
-      <h3 class="portfolio-subtitle">Sottotitolo Progetto 2</h3>
-      <p>Descrizione testuale del progetto 2, breve e chiara. Puoi aggiungere ulteriori dettagli o link utili.</p>
-      <a href="#" class="btn" target="_blank" rel="noopener noreferrer">Vai al progetto</a>
-    </div>
-  </div>
+            // Funzione per espandere/comprimere i blocchi
+            const toggleBlock = (block) => {
+                const content = block.querySelector('.block-content');
+                if (content) {
+                    content.classList.toggle('expanded');
+                    //content.classList.add('expanded');
+                }
+            };
+            
+            // Aggiunge l'evento click ai blocchi del portfolio per espandere/comprimere
+            portfolioBlocks.forEach(block => {
+                const isMobile = window.innerWidth <= 768;
 
-  <!-- Aggiungi qui altri blocchi portfolio -->
+                block.addEventListener('click', () => toggleBlock(block));
+                if (isMobile) {
+                }
+            });
 
+            // Funzione per lo scrolling
+            const scrollToTop = () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            // Listener per il pulsante "Torna su"
+            scrollToTopBtn.addEventListener('click', scrollToTop);
+            
+            // Listener per mostrare/nascondere il pulsante "Torna su"
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+�
