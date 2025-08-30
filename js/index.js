@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // ---------------- LIGHTBOX ----------------
     const images = document.querySelectorAll('.portfolio-image');
+    const imageCat = document.querySelector('.cat-image');
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
     const closeBtn = document.querySelector('.close-btn');
@@ -12,12 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const preloader = new Image();
             preloader.src = image.currentSrc || image.src; // forziamo il browser a caricare
         })
+        imageCat.src = imageCat.currentSrc || imageCat.src;
         images.forEach((image) => {
             image.addEventListener('click', (event) => {
                 lightbox.style.display = 'flex';
                 lightboxImage.src = event.target.currentSrc;
             });
-        
+
+            imageCat.addEventListener('click', (event) => {
+                lightbox.style.display = 'flex';
+                lightboxImage.src = event.target.currentSrc;
+            });
+
         });
 
         closeBtn.addEventListener('click', () => {

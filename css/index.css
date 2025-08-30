@@ -1,645 +1,420 @@
 :root {
-    --python-blue: #306998;
-    --python-yellow: #FFD43B;
+  --python-blue: #306998;
+  --python-yellow: #FFD43B;
 }
 
 body {
-    font-family: 'Lato', sans-serif;
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    background: #2b2e43;
-    /* Un grigio-blu scuro, comune nei temi di codice */
-    z-index: 2;
-    color: #f8f8f2;
-    /* Testo chiaro */
+  font-family: 'Lato', sans-serif;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  background: #2b2e43;
+  color: #f8f8f2;
 }
 
+/* --- Portfolio Card & Blocks --- */
 .portfolio-block {
-    /* background: #363a49;  Sfondo della card leggermente più chiaro */
-    background: #151822;
-    /* Sfondo della card leggermente più scuro */
-    border: 2px solid #124d7d;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    padding: 2rem;
-    /* box-shadow: 0 4px 20px rgba(48, 105, 152, 0.2); */
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    position: relative;
-    /* Riferimento per il posizionamento del logo */
+  background: #151822;
+  border: 2px solid #124d7d;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  position: relative;
+  transform-style: preserve-3d;
 }
 
 .portfolio-block:hover {
-    box-shadow: 0 8px 30px rgba(48, 105, 152, 0.4);
-    transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(48, 105, 152, 0.4);
+  transform: translateY(-5px);
 }
 
-.portfolio-image {
-    float: right;
-    max-width: 200px;
-    height: auto;
-    border-radius: 6px;
-    margin-left: 2rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    transition: box-shadow 0.3s ease;
+.portfolio-block::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-.portfolio-image:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
-}
-
+/* --- Typography & Elements --- */
 .portfolio-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin: 0 0 0.5rem 0;
-    color: var(--python-yellow);
-    /* Colore del titolo in giallo Python */
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: var(--python-yellow);
 }
 
 .portfolio-subtitle {
-    font-size: 1.1rem;
-    color: #bd93f9;
-    /* Colore viola per un tocco extra */
-    margin: 0 0 1.5rem 0;
-    font-style: italic;
+  font-size: 1.1rem;
+  color: #bd93f9;
+  margin: 0 0 1.5rem 0;
+  font-style: italic;
 }
 
 .portfolio-section-title {
-    font-size: 1.6rem;
-    font-weight: 600;
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 p {
-    line-height: 1.6;
-    color: #f8f8f2;
+  line-height: 1.6;
+  color: #f8f8f2;
 }
 
 strong {
-    color: var(--python-blue);
+  color: var(--python-blue);
 }
 
 ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin-top: 1rem;
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 1rem;
 }
 
 li {
-    margin-bottom: 0.5rem;
-    color: #f8f8f2;
+  margin-bottom: 0.5rem;
+  color: #f8f8f2;
 }
 
+/* --- Buttons --- */
 .btn-container {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  flex-direction: row;
+  max-width: 100%;
+  width: 100%;
 }
 
 .btn {
-    display: inline-block;
-    padding: 0.6rem 1.5rem;
-    margin-top: 1rem;
-    background-color: var(--python-blue);
-    color: var(--python-yellow);
-    border: 2px solid var(--python-blue);
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all .4s ease;
-    cursor: pointer;
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  margin-top: 1rem;
+  background-color: var(--python-blue);
+  color: var(--python-yellow);
+  border: 2px solid var(--python-blue);
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all .4s ease;
+  cursor: pointer;
 }
 
 .btn:hover,
 .btn:focus {
-    background-color: var(--python-yellow);
-    color: var(--python-blue);
-    border-color: var(--python-yellow);
-    box-shadow: rgba(255, 212, 59, 0.5) 0px 4px 12px;
-    text-decoration: none;
-    transform: scale(1.02);
+  background-color: var(--python-yellow);
+  color: var(--python-blue);
+  border-color: var(--python-yellow);
+  box-shadow: rgba(255, 212, 59, 0.5) 0px 4px 12px;
+  text-decoration: none;
+  transform: scale(1.02);
 }
 
-.portfolio-block::after {
-    content: "";
-    display: table;
-    clear: both;
+/* --- Project Components --- */
+.project-components {
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: stretch;
 }
 
-/* Media query for mobile */
-@media (max-width: 600px) {
-    .portfolio-image {
-        float: none;
-        max-width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-        margin-bottom: 1rem;
-        display: block;
-        margin: 0 auto 1rem;
-    }
+.project-component-item {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 200px;
+  background-color: #000000;
+  border: 1px solid var(--python-blue);
 }
 
-/* Stili per il carosello / lightbox */
+.project-component-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(255, 212, 59, 0.2);
+}
+
+/* --- Images --- */
+.portfolio-image {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  float: right;
+}
+
+.portfolio-image:hover {
+  box-shadow: 0 10px 25px rgba(255, 212, 59, 0.4);
+}
+
+.project-component-item .portfolio-image {
+  margin-left: 0;
+}
+
+figcaption {
+  font-size: 0.9rem;
+  color: #f8f8f2;
+  opacity: 0.7;
+}
+
+.image-gallery {
+  width: 100%;
+  margin: 0 auto 1.5rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.cat-image {
+  cursor: pointer;
+  max-width: 250px;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+.cat-image:hover {
+  box-shadow: 0 4px 12px rgb(128, 95, 12);
+}
+
+/* --- Lightbox --- */
 .lightbox {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    justify-content: center;
-    align-items: center;
-    overflow: auto;
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
 }
 
 .lightbox-content {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-    animation: zoomIn 0.3s ease-out;
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  animation: zoomIn 0.3s ease-out;
 }
 
 .close-btn {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    transition: 0.3s;
-    cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 .close-btn:hover,
 .close-btn:focus {
-    color: #bbb;
-    text-decoration: none;
+  color: #bbb;
+  text-decoration: none;
 }
 
 @keyframes zoomIn {
-    from {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.github-logo {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    /* Spostato a sinistra */
-    width: 25px;
-    /* Dimensione del logo */
-    height: auto;
-    fill: var(--python-yellow);
-    /* Imposta il colore di riempimento */
-}
-
-.golden {
-
-    color: goldenrod;
-    text-decoration: none;
-}
-.c{
-    text-align: center;
-}
-/* 
-    .project-components {
-      list-style-type: none;
-      padding-left: 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-    }
-
-    .project-component-item {
-      flex: 0 1 200px;
-      text-align: center;
-      background-color: var(--dark-blue);
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
- */
-
-
-.project-components {
-    list-style-type: none;
-    padding-left: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
-    /* Aggiunto per allineare gli elementi verticalmente */
-    align-items: stretch;
-}
-
-.project-component-item {
-    /* Modificato per distribuire lo spazio in modo uniforme e mantenere la stessa altezza */
-    flex: 1;
-    text-align: center;
-    background-color: var(--card-background);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Aggiunto per un controllo più preciso del layout interno */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-width: 200px;
-    background-color: #000000;
-    border: 1px solid var(--python-blue);
-  }
-
-.project-component-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(255, 212, 59, 0.2);
-}
-
-
-
-
-
-/* --------------------
-    Layout
-    -------------------- */
-/* .content-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-
-    @media (min-width: 800px) {
-      .content-grid {
-        grid-template-columns: 2fr 1fr;
-      }
-    } */
-
-
-/* --------------------
-    Image Gallery
-    -------------------- */
-/*     .image-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-
-    .image-gallery {
-      float: right;
-      margin-left: 2rem;
-      margin-bottom: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      align-items: center;
-    }
- 
-
- /* Responsive image gallery */
-.image-gallery {
-    width: 100%;
-    margin: 0 auto 1.5rem auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    align-items: center;
-}
-
-@media (min-width: 768px) {
-    .image-gallery {
-        width: auto;
-        float: right;
-        margin-left: 2rem;
-    }
-}
-
-.image-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.portfolio-image {
-    width: 100%;
-    max-width: 250px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-}
-
-.portfolio-image:hover {
-    box-shadow: 0 10px 25px rgba(255, 212, 59, 0.4);
-}
-
-figcaption {
-    margin-top: 0.75rem;
-    font-size: 0.9rem;
-    color: var(--text-color);
-    opacity: 0.7;
-}
-
-
-.project-component-item .portfolio-image {
-
-    margin-left: 0;
-
-}
-
-/* Scroll to top button styles */
-.scroll-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 50px;
-    height: 50px;
-    background-color: var(--python-yellow);
-    color: var(--python-blue);
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    cursor: pointer;
+  from {
+    transform: scale(0.5);
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 999;
-}
+  }
 
-.scroll-to-top.show-btn {
+  to {
+    transform: scale(1);
     opacity: 1;
-    visibility: visible;
-}
-
-/* Mobile specific styles for the scroll to top button */
-@media (max-width: 767px) {
-    .scroll-to-top {
-        width: 40px;
-        height: 40px;
-        bottom: 1rem;
-        right: 1rem;
-        font-size: 1.2rem;
-    }
-}
-
-.portfolio-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-}
-
-.social-links {
-    /* Il posizionamento assoluto è stato rimosso */
-    display: flex;
-    gap: 1rem;
-    z-index: 1000;
-}
-
-/* General link styling for social icons, applies to both SVG and text */
-.social-links a {
-    display: flex;
-    /* Aligns SVG and text side-by-side */
-    align-items: center;
-    /* Centers them vertically */
-    gap: 0.5rem;
-    /* Adds space between icon and text */
-    text-decoration: none;
-    color: var(--text-color);
-    transition: color 0.3s ease;
-}
-
-/* Hover effect for the entire link */
-.social-links a:hover {
-    color: var(--python-yellow);
-}
-
-.social-links a svg {
-    width: 45px;
-    height: auto;
-    /* fill: currentColor; */
-    fill: #0e76a8;
-
-    /* Inherits the color from the parent link */
-    transition: transform 0.3s ease;
-    background-color: white;
-    border-radius: 9px;
-}
-
-.social-links a:hover svg {
-    transform: scale(1.1);
-}
-
-/* Hide the text on small screens for a cleaner look */
-.social-links .social-text {
-    display: none;
-}
-
-/* Show the text on larger screens */
-@media (min-width: 768px) {
-    .social-links .social-text {
-        display: block;
-        
-    }
-
-}
-
-.social-text {
-    color: white;
-}
-
-.portfolio-block {
-    cursor: pointer;
-     user-select: none;     /* Disabilita selezione testo */
-    -webkit-user-select: none; /* Per Safari/iOS */
-    -ms-user-select: none;     /* Per vecchi Edge/IE */
-    -webkit-tap-highlight-color: transparent;
-}
-.portfolio-block strong {
-  user-select: none;          /* Non selezionabile */
-  -webkit-user-select: none;  /* Safari/iOS */
-}
-
-.expand-indicator.active {
-    transform: rotate(180deg);
-}
-
-
-
-.project-details-content {
-    display: none;
-}
-
-.project-details-content.active {
-    display: block;
-}
-/* default: desktop tutto aperto */
-.project-details-content {
-  display: block;
-}
-.expand-indicator{
-    display: none;
-  }
-/* mobile: inizialmente chiuso */
-@media (max-width: 768px) {
-  .project-details-content {
-    display: none;
-  }
-  .project-details-content.active {
-    display: block;
-  }
-
-  .expand-indicator{
-    display: block;
   }
 }
-/* ----------------- CARD PORTFOLIO ----------------- */
+
+/* --- Project Card Interactivity (Desktop-first approach) --- */
 .project-card {
-  user-select: none;           /* niente selezione testo su tutta la card */
-  -webkit-user-select: none;
-  -ms-user-select: none;
   position: relative;
-}
-
-/* Contenuto dettagli */
-.project-details-content {
-  display: block;              /* default desktop aperto */
-  max-height: none;
-  overflow: hidden;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
-  opacity: 1;
-}
-
-/* Contenuto chiuso su mobile */
-@media (max-width: 768px) {
-  .project-details-content {
-    display: block;            /* serve per animazione max-height */
-    max-height: 0;             /* inizialmente chiuso */
-    opacity: 0;
-  }
-
-  .project-details-content.active {
-    max-height: 1000px;        /* valore abbastanza grande da contenere tutto */
-    opacity: 1;
-  }
-
-  /* Indicatore espansione */
-  .expand-indicator {
-    display: block;
-    cursor: pointer;
-  }
-}
-
-/* Desktop: indicatori nascosti */
-.expand-indicator {
-  display: none;
-}
-
-/* Optional: evita highlight blu al tap */
-.project-card, .expand-indicator {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Eventuale testo interno (strong, a, span) rimane visibile ma non selezionabile */
-.project-card strong,
-.project-card span,
-.project-card a {
   user-select: none;
   -webkit-user-select: none;
-  pointer-events: auto; /* i link rimangono cliccabili */
-  
-}
-.project-details-content {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.4s ease, opacity 0.4s ease;
-}
-
-.project-details-content.active {
-  opacity: 1;
-}
-
-/* ----------------- CARD PORTFOLIO ----------------- */
-.project-card {
-  user-select: none;           
-  -webkit-user-select: none;
-  position: relative;
-}
-
-/* Contenuto dettagli - default desktop: sempre visibile */
-.project-details-content {
-  display: block;
-  max-height: none;
-  overflow: visible;
-  opacity: 1;
-  transition: none; /* niente animazione su desktop */
-}
-
-/* Solo mobile: inizialmente chiuso, animazione */
-@media (max-width: 768px) {
-  .project-details-content {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.4s ease, opacity 0.4s ease;
-  }
-
-  .project-details-content.active {
-    max-height: 1000px; /* o calcolata dinamicamente con JS */
-    opacity: 1;
-  }
-
-  .expand-indicator {
-    display: block;
-    cursor: pointer;
-  }
-}
-
-/* Desktop: indicatori nascosti */
-.expand-indicator {
-  display: none;
-}
-/* ----------------- CARD PORTFOLIO ----------------- */
-.project-card {
-  user-select: none;           
-  -webkit-user-select: none;
-  position: relative;
+  -ms-user-select: none;
+  -webkit-tap-highlight-color: transparent;
   margin-bottom: 1rem;
 }
 
-/* Contenuto dettagli - default desktop: sempre visibile */
+.project-card strong,
+.project-card span,
+.project-card a {
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: auto;
+}
+
 .project-details-content {
   display: block;
   max-height: none;
   overflow: visible;
   opacity: 1;
-  transition: none; /* niente animazione su desktop */
+  transition: none;
 }
 
-/* Solo mobile: inizialmente chiuso, animazione */
+
+/* --- Tags & Socials --- */
+.github-logo {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 25px;
+  height: auto;
+  fill: var(--python-yellow);
+}
+
+.tag-container {
+  position: absolute;
+  top: -1.25rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: -1;
+  transform: translateZ(-1px);
+}
+
+.bookmark-tag {
+  background-color: #ffd43b;
+  color: black;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+}
+
+.portfolio-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  z-index: 1000;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #f8f8f2;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: var(--python-yellow);
+}
+
+.social-links a svg {
+  width: 45px;
+  height: auto;
+  fill: #0e76a8;
+  transition: transform 0.3s ease;
+  background-color: white;
+  border-radius: 9px;
+}
+
+.social-links a:hover svg {
+  transform: scale(1.1);
+}
+
+.social-links .social-text {
+  display: none;
+  color: white;
+}
+
+.golden {
+  color: goldenrod;
+  text-decoration: none;
+}
+
+.c {
+  text-align: center;
+}
+
+/* --- Scroll-to-top button --- */
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background-color: var(--python-yellow);
+  color: var(--python-blue);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+.scroll-to-top.show-btn {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- Media Queries --- */
+@media (min-width: 768px) {
+  .portfolio-image {
+    float: right;
+  }
+
+  .image-gallery {
+    width: auto;
+    float: right;
+    margin-left: 2rem;
+  }
+
+  .social-links .social-text {
+    display: block;
+  }
+}
+
 @media (max-width: 768px) {
+  .portfolio-image {
+    float: none;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1rem;
+    display: block;
+    margin: 0 auto 1rem;
+  }
+
   .project-details-content {
     max-height: 0;
     overflow: hidden;
@@ -648,61 +423,22 @@ figcaption {
   }
 
   .project-details-content.active {
-    max-height: 1000px; /* viene calcolata dinamicamente in JS */
+    max-height: 1000px;
     opacity: 1;
   }
 
-  /* Indicatore espansione visibile solo mobile */
-  .expand-indicator {
-    display: block;
-    cursor: pointer;
+
+
+  .catbox {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .scroll-to-top {
+    width: 40px;
+    height: 40px;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 1.2rem;
   }
 }
-
-/* Desktop: indicatori nascosti */
-.expand-indicator {
-  display: none;
-}
-
-/* Optional: evita highlight blu al tap */
-.project-card, .expand-indicator {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Eventuale testo interno (strong, a, span) rimane visibile ma non selezionabile */
-.project-card strong,
-.project-card span,
-.project-card a {
-  user-select: none;
-  -webkit-user-select: none;
-  pointer-events: auto; /* i link rimangono cliccabili */
-}
-.portfolio-block {
-    position: relative; /* Indispensabile per posizionare il cartellino */
-}
-.tag-container {
-    position: absolute;
-    top: -1.25rem;
-    right: 1rem;
-    display: flex;
-    gap: 0.5rem; /* Spazio tra i tag */
-    z-index: -1;
-   /* padding-top: 1rem; /* Aggiunto padding per migliorare il layout */
-
-
-}
-
- .bookmark-tag {
-            background-color: #ffd43b;
-            color: black;
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-weight: 700;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            
-            letter-spacing: 1px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            white-space: nowrap; /* Impedisce che il testo si rompa su più righe */
-        }
-        
