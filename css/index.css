@@ -442,3 +442,33 @@ figcaption {
     font-size: 1.2rem;
   }
 }
+
+
+        .youtube-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #ff0000; /* Rosso di YouTube */
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .youtube-link:hover {
+            color: #ff4d4d;
+        }
+
+        .youtube-icon-img {
+            width: 18px;
+            height: auto;
+            vertical-align: middle;
+        }
+
+        .paragraph-container {
+            max-width: 600px;
+            text-align: left;
+        }
+        .golden {
+            color: goldenrod;
+            text-decoration: none;
+        }
