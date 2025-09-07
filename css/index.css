@@ -319,9 +319,11 @@ figcaption {
   z-index: 1000;
 }
 
+
 .social-links a {
   display: flex;
   align-items: center;
+
   gap: 0.5rem;
   text-decoration: none;
   color: #f8f8f2;
@@ -380,6 +382,7 @@ figcaption {
   transition: opacity 0.3s ease, visibility 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   z-index: 999;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .scroll-to-top.show-btn {
@@ -402,6 +405,7 @@ figcaption {
   .social-links .social-text {
     display: block;
   }
+  
 }
 
 @media (max-width: 768px) {
@@ -441,6 +445,11 @@ figcaption {
     right: 1rem;
     font-size: 1.2rem;
   }
+  .social-links {
+   
+  width: 100%;
+  justify-content: space-around;
+  }
 }
 
 
@@ -472,3 +481,8 @@ figcaption {
             color: goldenrod;
             text-decoration: none;
         }
+
+
+#change-language{
+  -webkit-tap-highlight-color: transparent;
+}
